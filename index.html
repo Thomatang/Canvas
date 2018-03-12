@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="PicassoCanvas"width="1000" height="1000" style="border:1px solid #000000;" >
+
+    </canvas>
+
+    <script>
+        let verticals = function() {
+            for (let i = 0; i <= 1000; i = i + 50) {
+                let c = document.getElementById("PicassoCanvas");
+                let ctx = c.getContext("2d");
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, 1000);
+                ctx.stroke();
+            };
+        }
+
+        let horizontals = function () {
+            for (let i=0; i<=1000; i=i+50){
+                var c = document.getElementById("PicassoCanvas");
+                var ctx = c.getContext("2d");
+                ctx.moveTo(0, i);
+                ctx.lineTo(1000, i);
+                ctx.stroke();
+            }
+        }
+
+        verticals();
+        horizontals();
+   
+//    let drawSquareOnClick= function(){
+//        var c = document.getElementById("myCanvas");
+//        var ctx = c.getContext("2d");
+//        ctx.rect(20, 20, 150, 100);
+//        ctx.stroke();
+//    }
+
+  
+
+
+let c= document.getElementById("PicassoCanvas");
+       c.addEventListener("mousemove", function(event){
+            let x = event.clientX;
+            let y = event.clientY;
+            let z= undefined;
+           function round50(z) {
+               return Math.floor(z / 50) * 50;
+           }
+
+ let newX = round50(x);
+let newY= round50(y);
+            console.log(newX,newY);
+
+           let ctx = c.getContext("2d");
+           ctx.beginPath();
+           ctx.lineWidth = "4";
+           var cr = 'rgb(' +
+               Math.floor(Math.random() * 256) + ',' +
+               Math.floor(Math.random() * 256) + ',' +
+               Math.floor(Math.random() * 256) + ')';
+
+           ctx.fillStyle = cr;
+        //    ctx.fillStyle = 'hsl(' + 360 * Math.random() + ', 50%, 50%)';
+           ctx.rect(newX, newY, 50, 50);
+           ctx.fill();
+       })
+       
+   
+    
+    </script>
+</body>
+</html>
